@@ -49,7 +49,6 @@
             color: var(--text-main);
             font-family: var(--font-serif);
             overflow-x: hidden;
-            /* FIX 1: Use dvh for better mobile support */
             min-height: 100vh;
             min-height: 100dvh; 
         }
@@ -67,18 +66,27 @@
         }
 
         /* =========================================
-           FALLING PETALS ANIMATION
+           FIXED: FALLING PETALS CONTAINER
            ========================================= */
-        .petal {
+        #petals-container {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* This stops the scrollbar issue! */
+            pointer-events: none;
+            z-index: 999; 
+        }
+
+        .petal {
+            position: absolute; /* Changed from fixed to absolute so it stays inside container */
             top: -10vh;
             background-color: var(--dusty-rose);
             width: 15px;
             height: 15px;
             border-radius: 15px 0px;
             opacity: 0.8;
-            z-index: 999;
-            pointer-events: none;
             animation: fall linear forwards;
         }
 
@@ -597,10 +605,9 @@
             opacity: 0;
         }
 
-        /* WATERMARK STYLES - UPDATED */
+        /* WATERMARK STYLES */
         .watermark {
             position: fixed;
-            /* FIX 2: Tighter bottom spacing */
             bottom: 5px; 
             left: 0;
             width: 100%;
@@ -638,7 +645,6 @@
             }
 
             body {
-                /* FIX 3: REMOVED padding-bottom: 30px; which was causing the gap */
                 padding-bottom: 0;
             }
         }
@@ -916,16 +922,16 @@ U remember how we were crying, to be honest this was hardest bye I ever said to 
             petal.style.left = Math.random() * window.innerWidth + 'px';
             petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
             petal.style.backgroundColor = ['#d291bc', '#e0b0d0', '#f4e1d2'][Math.floor(Math.random() * 3)];
-            document.body.appendChild(petal);
+            
+            // FIX APPLIED HERE: Append to the container, not the body
+            document.getElementById('petals-container').appendChild(petal);
+            
             setTimeout(() => petal.remove(), 10000);
         }
         setInterval(createPetal, 400);
     </script>
 </body>
 
-
 </html>
-
-
 
 
