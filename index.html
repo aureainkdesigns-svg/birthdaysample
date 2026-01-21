@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, My Love</title>
+    <title>Happy Birthday Mudumaaa</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,6 @@
             --font-serif: 'Lora', serif;
             --font-title: 'Cinzel', serif;
             --font-handwriting: 'Shadows Into Light', cursive;
-            /* New Font for Letter */
             --font-letter: 'Dancing Script', cursive;
         }
 
@@ -43,7 +42,6 @@
         body {
             /* Replace with your image if needed */
             background-image: url('image_292c72.png');
-            /* Fallback color if image doesn't load */
             background-color: var(--bg-sage);
             background-size: cover;
             background-position: center;
@@ -51,10 +49,11 @@
             color: var(--text-main);
             font-family: var(--font-serif);
             overflow-x: hidden;
+            /* FIX 1: Use dvh for better mobile support */
             min-height: 100vh;
+            min-height: 100dvh; 
         }
 
-        /* Overlay to ensure text readability */
         body::before {
             content: '';
             position: fixed;
@@ -550,12 +549,9 @@
             border: 1px solid #e0d0b0;
         }
 
-        /* UPDATED FONT FOR LETTER CONTENT */
         .letter-content p {
             font-family: var(--font-letter);
-            /* Uses Dancing Script */
             font-size: 1.3rem;
-            /* Adjusted for readability */
             font-weight: 500;
             color: #4a3b32;
             text-align: center;
@@ -601,10 +597,11 @@
             opacity: 0;
         }
 
-        /* WATERMARK STYLES */
+        /* WATERMARK STYLES - UPDATED */
         .watermark {
             position: fixed;
-            bottom: 10px;
+            /* FIX 2: Tighter bottom spacing */
+            bottom: 5px; 
             left: 0;
             width: 100%;
             text-align: center;
@@ -641,7 +638,8 @@
             }
 
             body {
-                padding-bottom: 30px;
+                /* FIX 3: REMOVED padding-bottom: 30px; which was causing the gap */
+                padding-bottom: 0;
             }
         }
     </style>
@@ -669,7 +667,6 @@
     <div class="container">
 
         <div id="hero" class="section active">
-            <div class="watermark">made by aurea ink and designs</div>
             <div class="paper-card">
                 <p style="font-family: var(--font-title); font-size: 1rem; color: var(--gold-accent);">My Love,</p>
                 <h1>Happy Birthday</h1>
@@ -891,6 +888,7 @@ Happy Birthday to the girl written into every chapter of my life ✨</h2>
 
     </div>
 
+    <div class="watermark">made by aurea ink and designs</div>
 
     <script>
         function showSection(sectionId) {
@@ -928,5 +926,6 @@ Happy Birthday to the girl written into every chapter of my life ✨</h2>
 
 
 </html>
+
 
 
